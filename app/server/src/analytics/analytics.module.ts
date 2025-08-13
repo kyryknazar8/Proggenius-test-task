@@ -9,5 +9,6 @@ import { KeyPress } from './entities/key-press.entity';
   imports: [TypeOrmModule.forFeature([KeyPress])],
   providers: [AnalyticsService, AnalyticsGateway],
   controllers: [AnalyticsController],
+  exports: [AnalyticsService, AnalyticsGateway],
 })
 export class AnalyticsModule {}

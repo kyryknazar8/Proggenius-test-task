@@ -1,4 +1,4 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable, OnModuleInit, Inject, forwardRef } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { KeyPress } from '../entities/key-press.entity';
@@ -13,6 +13,8 @@ export class AnalyticsService implements OnModuleInit {
   constructor(
     @InjectRepository(KeyPress)
     private readonly keyPressRepository: Repository<KeyPress>,
+
+    @Inject(forwardRef(() => AnalyticsGateway))
     private readonly analyticsGateway: AnalyticsGateway,
   ) {}
 

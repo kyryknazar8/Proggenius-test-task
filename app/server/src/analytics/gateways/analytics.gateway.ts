@@ -5,6 +5,7 @@ import {
   OnGatewayConnection,
   OnGatewayDisconnect,
 } from '@nestjs/websockets';
+import { Inject, forwardRef } from '@nestjs/common';
 import { Server, Socket } from 'socket.io';
 import { AnalyticsService } from '../services/analytics.service';
 
@@ -15,7 +16,10 @@ export class AnalyticsGateway
   @WebSocketServer()
   server: Server;
 
-  constructor(private readonly analyticsService: AnalyticsService) {}
+  constructor(
+    @Inject(forwardRef(() => AnalyticsService))
+    private readonly analyticsService: AnalyticsService,
+  ) {}
 
   async handleConnection(client: Socket) {
     console.log(`Client connected: ${client.id}`);

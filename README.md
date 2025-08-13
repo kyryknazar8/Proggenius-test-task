@@ -42,7 +42,7 @@ All commands for the backend must be run from the `app/server` directory.
 
 3.  Start the server:
     ```bash
-    npm run start:dev
+    npm run start
     ```
 
 The backend server will now be running and listening for connections on **`http://localhost:3000`**.
