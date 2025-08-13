@@ -4,11 +4,11 @@
 /app/server/build
 
 # dotenv environment variable files
-/app/server/.env
-/app/server/.env.development.local
-/app/server/.env.test.local
-/app/server/.env.production.local
-/app/server/.env.local
+# /app/server/.env
+# /app/server/.env.development.local
+# /app/server/.env.test.local
+# /app/server/.env.production.local
+# /app/server/.env.local
 
 # Logs
 logs
