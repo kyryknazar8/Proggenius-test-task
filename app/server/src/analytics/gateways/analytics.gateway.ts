@@ -4,10 +4,12 @@ import {
   WebSocketServer,
   OnGatewayConnection,
   OnGatewayDisconnect,
+  MessageBody,
 } from '@nestjs/websockets';
-import { Inject, forwardRef } from '@nestjs/common';
+import { Inject, UsePipes, ValidationPipe, forwardRef } from '@nestjs/common';
 import { Server, Socket } from 'socket.io';
 import { AnalyticsService } from '../services/analytics.service';
+import { KeyPressDto } from '../dto/keyPres.dto';
 
 @WebSocketGateway({ cors: { origin: '*' } })
 export class AnalyticsGateway
@@ -33,9 +35,10 @@ export class AnalyticsGateway
   }
 
   @SubscribeMessage('keyPress')
+  @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
   async handleKeyPress(
     client: Socket,
-    payload: { key: string },
+    @MessageBody() payload: KeyPressDto,
   ): Promise<void> {
     await this.analyticsService.handleKeyPress(payload.key);
   }

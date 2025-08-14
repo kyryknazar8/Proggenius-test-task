@@ -66,6 +66,7 @@ export class AnalyticsService implements OnModuleInit {
     );
     statsForClient.sort((a, b) => b.count - a.count);
     this.analyticsGateway.server.emit('statsUpdate', statsForClient);
+    console.log('Updated stats sent successfully');
   }
 
   async getStats(): Promise<{ key: string; count: number }[]> {

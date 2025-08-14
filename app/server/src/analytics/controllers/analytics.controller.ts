@@ -23,7 +23,7 @@ export class AnalyticsController {
       ...details,
       navigation: {
         prev: neighbors.prev ? `/key/${neighbors.prev}` : null,
-        next: neighbors.prev ? `/key/${neighbors.next}` : null,
+        next: neighbors.next ? `/key/${neighbors.next}` : null,
       },
     };
   }
